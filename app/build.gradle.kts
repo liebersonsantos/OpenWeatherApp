@@ -1,8 +1,11 @@
+import java.util.Properties
+
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.hilt)
 }
 
@@ -12,7 +15,7 @@ android {
 
     defaultConfig {
         applicationId = "com.liebersonsantos.openweatherapp"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -21,6 +24,24 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        val keystoreFile = project.rootProject.file("keys.properties")
+        val properties = Properties()
+        properties.load(keystoreFile.inputStream())
+
+        val apiKey = properties.getProperty("API_KEY") ?: ""
+        val baseUrl = properties.getProperty("BASE_URL") ?: ""
+
+        buildConfigField(
+            type = "String",
+            name = "API_KEY",
+            value = apiKey
+        )
+        buildConfigField(
+            type = "String",
+            name = "BASE_URL",
+            value = baseUrl
+        )
     }
 
     buildTypes {
@@ -41,6 +62,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
