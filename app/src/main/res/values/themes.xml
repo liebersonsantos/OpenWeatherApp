@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.OpenWeatherApp" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.OpenWeatherApp" parent="android:Theme.Material.Light.NoActionBar"/>
+    <style name="Base.Theme.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#4f9bd9</item>
+        <item name="postSplashScreenTheme">@style/Theme.OpenWeatherApp</item>
+    </style>
+
 </resources>

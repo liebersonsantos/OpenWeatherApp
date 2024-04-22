@@ -1,4 +1,4 @@
-package com.liebersonsantos.openweatherapp.data.model
+package com.liebersonsantos.openweatherapp.domain.model
 
 data class WeatherInfo(
     val locationName: String,

@@ -25,7 +25,7 @@ android {
             useSupportLibrary = true
         }
 
-        val keystoreFile = project.rootProject.file("keys.properties")
+        val keystoreFile = project.rootProject.file("key.properties")
         val properties = Properties()
         properties.load(keystoreFile.inputStream())
 
@@ -87,17 +87,33 @@ dependencies {
 
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.android)
+    implementation(libs.ktor.client.okhttp)
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.ktor.client.logging)
+    implementation(libs.ktor.mock)
 
     implementation(libs.lifecycle.runtime.compose)
     implementation(libs.lifecycle.viewmodel.compose)
 
     implementation(libs.hilt.android)
+    implementation(libs.hilt.android.navigation)
     kapt(libs.hilt.android.compiler)
 
+    implementation(libs.splash.screen)
+
+    implementation(libs.navigation.compose)
+
+    //service location
+    implementation(libs.services.location)
+
     testImplementation(libs.junit)
+
+    //unit test
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
+
+    //android test
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(platform(libs.compose.bom))

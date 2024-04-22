@@ -10,8 +10,6 @@ import dagger.hilt.android.components.ViewModelComponent
 @Module
 @InstallIn(ViewModelComponent::class)
 interface RepositoryModule {
-
     @Binds
     fun bindWeatherRepository(repositoryImpl: WeatherRepositoryImpl): WeatherRepository
-
 }
